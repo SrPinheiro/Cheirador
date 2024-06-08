@@ -1,8 +1,10 @@
-import pybricks.ev3devices as ev3
+from resources.defaultResource import Resource
+from pybricks.ev3devices import InfraredSensor
 
-class SensorInfravermelho:
+class SensorInfravermelho(Resource):
     def __init__(self, port):
-        self.dispositivo = ev3.InfraredSensor(port)
+        self.dispositivo = InfraredSensor(port)
+        self.porta = port
 
     def distancia(self):
         return self.dispositivo.distance()

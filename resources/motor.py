@@ -1,10 +1,12 @@
-from pybricks.parameters import Direction, Stop
 from pybricks.ev3devices import Motor as MotorLego
+from enums.parada import Parada
+from enums.direcao import Direcao
+from resources.defaultResource import Resource
 
-class Motor:
-    def __init__(self, port, positive_direction=Direction.CLOCKWISE, gears=None):
-        self.dispositivo = MotorLego(port, positive_direction, gears)
-        #super().__init__(self.dispositivo)
+class Motor(Resource):
+    def __init__(self, porta, positive_direction=Direcao.SENTIDOHORARIO, gears=None):
+        self.dispositivo = MotorLego(porta, positive_direction, gears)
+        self.porta = porta
 
     def getVelocidade(self):
         return self.dispositivo.speed()
@@ -18,22 +20,22 @@ class Motor:
     def soltarMotor(self):
         self.dispositivo.stop()
     
-    def frearMotor(self):
+    def freioMotor(self):
         self.dispositivo.brake()
 
-    def pararMotor(self):
+    def trancarMotor(self):
         self.dispositivo.hold()
 
     def acelerar(self, velocidade):
         self.dispositivo.run(velocidade)
     
-    def acelerarPorTempo(self, velocidade, tempo, entao=Stop.HOLD, esperar=True):
+    def acelerarPorTempo(self, velocidade, tempo, entao=Parada.PARAR, esperar=True):
         self.dispositivo.run_time(velocidade, tempo, entao, esperar)
 
-    def acelerarPorAngulo(self, velocidade, angulo, entao=Stop.HOLD, esperar=True):
+    def acelerarPorAngulo(self, velocidade, angulo, entao=Parada.PARAR, esperar=True):
         self.dispositivo.run_target(velocidade, angulo, entao, esperar)
 
-    def acelerarAteParar(self, velocidade, entao=Stop.COAST, limite=None):
+    def acelerarAteParar(self, velocidade, entao=Parada.PARAR, limite=None):
         self.dispositivo.run_until_stalled(velocidade,entao, limite)
 
     def rotacionar(self, taxa):

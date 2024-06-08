@@ -1,7 +1,8 @@
 from pybricks.hubs import EV3Brick
-from app.enums.cor import Cor
+from enums.cor import Cor
+from resources.defaultResource import Resource
 
-class Cerebro:
+class Cerebro(Resource):
     def __init__(self):
         self.dispositivo = EV3Brick()
 
@@ -9,9 +10,9 @@ class Cerebro:
         return self.dispositivo.buttons.pressed()
     
     def isPressionado(self, botao):
-        pressionados = self.getBotoes()
+        botoesPressionados = self.getBotoes()
 
-        return botao in pressionados
+        return botao in botoesPressionados
 
     def ligarLuz(self, cor):
         self.dispositivo.light.on(cor)

@@ -1,9 +1,11 @@
-from app.enums.direcao import Direcao
-from pybricks.ev3devices import Motor, TouchSensor, ColorSensor, InfraredSensor, UltrasonicSensor, GyroSensor
+from enums.direcao import Direcao
+from pybricks.ev3devices import GyroSensor
+from resources.defaultResource import Resource
 
-class SensorGiroscopio:
+class SensorGiroscopio(Resource):
     def __init__(self, port, positive_direction=Direcao.SENTIDOHORARIO):
         self.dispositivo = GyroSensor(port, positive_direction)
+        self.porta = port
 
     def velocidade(self):
         return self.dispositivo.speed()

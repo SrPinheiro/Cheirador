@@ -1,10 +1,12 @@
 from pybricks.ev3devices import ColorSensor
+from resources.defaultResource import Resource
 
-class SensorDeCor:
+class SensorDeCor(Resource):
     def __init__(self, port):
         self.dispositivo = ColorSensor(port)
+        self.porta = port
     
-    def cor(self):
+    def getCor(self):
         return self.dispositivo.color()
         
     def luz_ambiente(self):

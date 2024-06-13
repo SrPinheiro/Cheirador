@@ -5,4 +5,4 @@ class Mapa:
     MOTORESQUERDO = Porta.PD
 
     SENSORESQUERDO = Porta.P1
-    SENSORDIREITO = Porta.P2
+    SENSORDIREITO = Porta.P4

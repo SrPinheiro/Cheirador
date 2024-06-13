@@ -1,6 +1,6 @@
-from pybricks.tools import wait, StopWatch, DataLog
+from pybricks.tools import wait, StopWatch
 
-class tempo:
+class Tempo:
     def pausar(tempo):
         wait(tempo)
 

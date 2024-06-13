@@ -2,7 +2,7 @@ from resources.sensorDeCor import SensorDeCor
 from app.services.defaultService import Service
 from configs.parametros import Parametros
 import math
-
+from helpers.matematica import Matematica
 class ColorService(Service):
     def __init__(self, porta):
         self.dispositivo = SensorDeCor(porta)
@@ -30,20 +30,27 @@ class ColorService(Service):
         for _ in range(Parametros.QUANT_AMOSTRAS_REFLEXAO):
             colorVector.append(self.dispositivo.reflexao())
 
-        colorVector.sort()
+        mediana = Matematica.MedianaPorVetor(colorVector)
 
-        centro = math.floor(Parametros.QUANT_AMOSTRAS_REFLEXAO / 2)
+        return mediana
+    
+    def getRGB(self):
+        RED = []
+        GREEN = []
+        BLUE = []
 
-        correcao = Parametros.QUANT_AMOSTRAS_REFLEXAO % 2
-        quantValores = math.floor(Parametros.QUANT_AMOSTRAS_REFLEXAO * Parametros.PORCENTAGEM_DE_AMOSTRAS_COR_VALIDAS) / 2
-        inicio = math.floor(centro - quantValores)
-        fim = math.ceil(centro + quantValores) + correcao
+        for _ in range(Parametros.QUANT_AMOSTRAS_RGB):
+            RGB = self.dispositivo.getRGB()
+            RED.append(RGB[0])
+            GREEN.append(RGB[1])
+            BLUE.append(RGB[2])
 
-        media = 0
+        MRED = Matematica.MedianaPorVetor(RED)
+        MGREEN = Matematica.MedianaPorVetor(GREEN)
+        MBLUE = Matematica.MedianaPorVetor(BLUE)
 
-        for i in range(inicio, fim):
-            media += colorVector[i]
-
-        return media / (fim - inicio)
-
+        return (MRED, MGREEN, MBLUE)
+    
+    def getColorAdvanced(self):
+        pass
 

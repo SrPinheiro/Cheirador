@@ -9,11 +9,11 @@ class SensorDeCor(Resource):
     def getCor(self):
         return self.dispositivo.color()
         
-    def luz_ambiente(self):
+    def getLuzAmbiente(self):
         return self.dispositivo.ambient()
 
-    def reflexao(self):
+    def getReflexao(self):
         return self.dispositivo.reflection()
 
-    def rgb(self):
+    def getRGB(self):
         return self.dispositivo.rgb()

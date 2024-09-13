@@ -19,3 +19,13 @@ class Matematica:
 
     def MediaPorVetor(vetor):
         return sum(vetor) / len(vetor)
+    
+    def DiferencaPorVetor(vetor1, vetor2):
+        diferenca = 0
+        for i in range(len(vetor1)):
+            try:
+                diferenca += abs(vetor1[i] - vetor2[i])
+            except:
+                continue
+
+        return diferenca

@@ -1,8 +1,8 @@
 from enums.porta import Porta
 
 class Mapa:
-    MOTORDIREITO = Porta.PB
-    MOTORESQUERDO = Porta.PD
+    MOTORDIREITO = Porta.PD
+    MOTORESQUERDO = Porta.PB
 
     SENSORESQUERDO = Porta.P1
     SENSORDIREITO = Porta.P4

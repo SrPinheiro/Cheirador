@@ -1,4 +1,4 @@
-from enums.porta import Porta
+from FireWall.enums import Porta
 
 class Mapa:
     MOTORDIREITO = Porta.PD

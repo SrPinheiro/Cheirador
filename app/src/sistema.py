@@ -1,9 +1,7 @@
-from app.services.colorService import ColorService
-from resources.cerebro import Cerebro
 from configs.mapa import Mapa
-from resources.motor import Motor
-from helpers.matematica import Matematica
-from enums.cor import Cor
+from FireWall.enums import Cor
+from FireWall.dispositivos import Motor
+from FireWall.services import ColorService
 
 class Sistema:
     def __init__(self):

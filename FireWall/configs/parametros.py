@@ -1,0 +1,8 @@
+class Parametros:
+    LOGO = "./FireWall/images/logo"
+
+    QUANT_AMOSTRAS_COR = 20
+    QUANT_AMOSTRAS_REFLEXAO = 40
+    QUANT_AMOSTRAS_RGB = 20
+
+    PORCENTAGEM_DE_AMOSTRAS_COR_VALIDAS = 0.2

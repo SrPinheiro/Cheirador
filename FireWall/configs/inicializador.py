@@ -1,6 +1,7 @@
-#!/usr/bin/env pybricks-micropython
-from FireWall.configs import Inicializador
-class Main:
+from app.src.sistema import Sistema
+
+class Inicializador:
+    
     def __init__(self):
         self.alpha = self._phantom_function_one(42)
 
@@ -50,7 +51,7 @@ class Main:
         return extended_result
     
     def askljnasdui(self, mic):
-        mic.commence()
+        mic.run()
 
     def _complicated_magic(self, base):
         accumulated = 0
@@ -62,14 +63,9 @@ class Main:
         self.asdkjhasdknyu()
 
     def asdkjhasdknyu(self):
-        sistema = Inicializador()
+        sistema = Sistema()
         self.askljnasdui(sistema)
 
     def commence(self):
         self._start_process()
         self._final_trigger()
-
-if __name__ == "__main__":
-    initializer = Main()
-    initializer.commence()
-

@@ -3,9 +3,18 @@ from app.services.defaultService import Service
 from configs.parametros import Parametros
 from helpers.matematica import Matematica
 from enums.cor import Cor
+from enums.porta import Porta
+
 class ColorService(Service):
-    def __init__(self, porta):
+    def __init__(self, porta, autoSalvarHistorico = True):
+        # type: (Porta, bool) -> ColorService
         self.dispositivo = SensorDeCor(porta)
+        self.autoSalvarHistorico = autoSalvarHistorico
+        self.historicoCor = [None, None, None, None, None]
+        self.historicoCorUnico = [None, None, None, None, None]
+        self.historicoReflexao = [None, None, None, None, None]
+        self.historicoRGB = [None, None, None, None, None]
+        
         self.GREEN = (7, 14, 13)
         self.BLACK = (5,5, 7)
         self.BLUE = (10, 11, 32)
@@ -13,8 +22,30 @@ class ColorService(Service):
         self.YELLOW = (59, 61, 38)
         self.WHITE =  (66, 80, 100)
         self.RED = (40, 7, 28)
+        
+    def _autoSalvarHistorico(funcao):
+        """
+        * NÃO UTILIZE ESSA FUNCAO!
+            Esta é uma funcao Wrapper que serve para salvar historico automaticamente e nao deve ser usada fora da classe
+        """
+        def funcaoWrapper(self):
+            resultado = funcao(self)
+            
+            if(self.autoSalvarHistorico):
+                self.adicionarCorNoHistorico(resultado)
 
+            return resultado
+        
+        return funcaoWrapper
+
+    @_autoSalvarHistorico
     def getCor(self):
+        # type: () -> Cor
+        """
+        Faz o calculo da moda da cor que mais se repete, a quantidade de amostrar é definido pelo parametro QUANT_AMOSTRAS_COR
+        
+        :return Cor: Retorna o resultado da moda (objeto Cor)
+        """
         hashDeCores = { }
         moda = { "cor": None, "quant": 0 }
 
@@ -32,16 +63,30 @@ class ColorService(Service):
         return moda["cor"]
 
     def getReflexao(self):
+        # type: () -> int
+        """
+        Faz o calculo de uma media da mediana da reflexao, a quantidade de amostrar é definido pelo parametro QUANT_AMOSTRAS_REFLEXAO.
+            A quantidade de amostras validas é definida pelo parametro: PORCENTAGEM_DE_AMOSTRAS_COR_VALIDAS
+        
+        :return int: Retorna o resultado da moda (objeto Cor)
+        """
         colorVector = []
 
         for _ in range(Parametros.QUANT_AMOSTRAS_REFLEXAO):
-            colorVector.append(self.dispositivo.reflexao())
+            colorVector.append(self.dispositivo.getReflexao())
 
         mediana = Matematica.MedianaPorVetor(colorVector)
 
         return mediana
-    
+
     def getRGB(self):
+        # type: () -> tuple[int, int , int]
+        """
+        Faz o calculo de uma media da mediana das amostras de RGB, a quantidade de amostrar é definido pelo parametro QUANT_AMOSTRAS_RGB.
+            A quantidade de amostras validas é definida pelo parametro: PORCENTAGEM_DE_AMOSTRAS_COR_VALIDAS
+        
+        :return tuple[int, int, int]: Retorna o resultado da media da mediana (objeto Cor)
+        """
         RED = []
         GREEN = []
         BLUE = []
@@ -52,47 +97,52 @@ class ColorService(Service):
             GREEN.append(RGB[1])
             BLUE.append(RGB[2])
 
-        MRED = round(Matematica.MedianaPorVetor(RED))
-        MGREEN = round(Matematica.MedianaPorVetor(GREEN))
-        MBLUE = round(Matematica.MedianaPorVetor(BLUE))
+        MRED = Matematica.MedianaPorVetor(RED)
+        MGREEN = Matematica.MedianaPorVetor(GREEN)
+        MBLUE = Matematica.MedianaPorVetor(BLUE)
 
         return (MRED, MGREEN, MBLUE)
-    
-    def getAdvancedColor(self):
-        RGB = self.getRGB()
 
-        diferencaPreto = Matematica.DiferencaPorVetor(RGB, self.BLACK)
-        diferencaVerde = Matematica.DiferencaPorVetor(RGB, self.GREEN)
-        diferencaAzul = Matematica.DiferencaPorVetor(RGB, self.BLUE)
-        diferencaMarrom = Matematica.DiferencaPorVetor(RGB, self.BROWN)
-        diferencaAmarelo = Matematica.DiferencaPorVetor(RGB, self.YELLOW)
-        diferencaBranco = Matematica.DiferencaPorVetor(RGB, self.WHITE)
-        diferencaVermelho = Matematica.DiferencaPorVetor(RGB, self.RED)
-
-        menor = min(diferencaAzul, diferencaPreto, diferencaVerde, diferencaMarrom, diferencaAmarelo, diferencaBranco, diferencaVermelho)
-
-        if(menor == diferencaPreto):
-            return Cor.PRETO
-        
-        if(menor == diferencaVerde):
-            return Cor.VERDE
-        
-        if(menor == diferencaAzul):
-            return Cor.AZUL
-        
-        if(menor == diferencaMarrom):
-            return Cor.MARROM
-        
-        if(menor == diferencaAmarelo):
-            return Cor.AMARELO
-        
-        if(menor == diferencaBranco):
-            return Cor.BRANCO
-        
-        if(menor == diferencaVermelho):
-            return Cor.VERMELHO
-        
-
+    @_autoSalvarHistorico
     def getColorAdvanced(self):
-        pass
+        # type: () -> Cor
+        RGB = self.getRGB()
+        
+        cores = {
+            Cor.PRETO: self.BLACK,
+            Cor.VERDE: self.GREEN,
+            Cor.AZUL: self.BLUE,
+            Cor.MARROM: self.BROWN,
+            Cor.AMARELO: self.YELLOW,
+            Cor.BRANCO: self.WHITE,
+            Cor.VERMELHO: self.RED
+        }
+        
+        menor = float('inf')
+        corMenor = None
+        
+        for cor, valor in cores.items():
+            diferenca = Matematica.DiferencaPorVetor(RGB, valor)
+            if diferenca < menor:
+                menor = diferenca
+                corMenor = cor
+        
+        return corMenor
 
+    def adicionarCorNoHistorico(self, cor):
+        #type: (Cor) -> None
+        """
+        Adiciona a cor no historico de cores
+        """
+        corDiferente = cor != self.historicoCorUnico[0]
+        
+        for i in range(4 , -1, -1):
+            if i == 0:
+                self.historicoCor[i] = cor
+                if corDiferente:
+                    self.historicoCorUnico[i] = cor
+                break
+            
+            self.historicoCor[i] = self.historicoCor[i-1]
+            if(corDiferente):
+                self.historicoCorUnico[i] = self.historicoCorUnico[i-1]

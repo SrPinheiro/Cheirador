@@ -3,7 +3,9 @@ from configs.parametros import Parametros
 
 class Matematica:
     
+    @staticmethod
     def MedianaPorVetor(vetor):
+        # type: (list[int | float]) -> int
         vetor.sort()
         comprimento = len(vetor)
         centro = math.floor(comprimento / 2)
@@ -16,11 +18,15 @@ class Matematica:
         media = Matematica.MediaPorVetor(vetor[inicio:fim])
         return media
     
-
+    @staticmethod
     def MediaPorVetor(vetor):
-        return sum(vetor) / len(vetor)
+        #type: (list[int | float]) -> float
+        resultado = (sum(vetor) / len(vetor)) if len(vetor) != 0 else 0.0
+        return resultado
     
+    @staticmethod
     def DiferencaPorVetor(vetor1, vetor2):
+        #type: (list[int | float], list[int | float]) -> float
         diferenca = 0
         for i in range(len(vetor1)):
             try:

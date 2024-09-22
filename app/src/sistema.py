@@ -15,7 +15,7 @@ class Sistema:
     def run(self):
         RColor = self.RColorService.getAdvancedColor()
         LColor = self.LColorService.getAdvancedColor()
-
+        
         while True:
             if(not RColor == Cor.PRETO and not LColor == Cor.VERMELHO):
                 self.LMotor.run(100)

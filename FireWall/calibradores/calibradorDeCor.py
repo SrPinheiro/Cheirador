@@ -1,6 +1,6 @@
 from utils.tempo import Tempo
 from FireWall.enums import Botao, Porta
-from FireWall.services import ColorService
+from FireWall.servicos import ServicoDeCor
 from FireWall.dispositivos import Cerebro
 from FireWall.calibradores import CalibradorDefault
 
@@ -9,7 +9,7 @@ class CalibradorDeCor(CalibradorDefault):
     def __init__(self, porta):
         #type: (Porta) -> CalibradorDeCor
         self.cerebro = Cerebro()
-        self.colorService = ColorService(porta)
+        self.colorService = ServicoDeCor(porta)
 
     def run(self):
         cores = ['verde', 'preto', 'azul', 'marrom', 'amarelo', 'branco', 'vermelho']

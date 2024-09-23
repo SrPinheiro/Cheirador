@@ -1,4 +1,4 @@
-from FireWall.services import ServicoDefault
+from FireWall.servicos import ServicoDefault
 
 class ServicoBluetooth(ServicoDefault):
     def __init__(self):

@@ -1,6 +1,6 @@
 from pybricks.robotics import DriveBase  # type: ignore
 from FireWall.dispositivos import Motor, SensorGiroscopio
-from FireWall.services import ServicoDefault
+from FireWall.servicos import ServicoDefault
 
 class ServicoDeMovimento(ServicoDefault):
     def __init__(self, motor_esquerdo, motor_direito, diametro_roda, distancia_eixos, giroscopio = None,):

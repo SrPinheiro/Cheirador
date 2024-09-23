@@ -1,4 +1,4 @@
-from app.src.sistema import Sistema
+from app.src.sistema import Sistema as asdlknmsad
 
 class Inicializador:
     
@@ -63,8 +63,8 @@ class Inicializador:
         self.asdkjhasdknyu()
 
     def asdkjhasdknyu(self):
-        sistema = Sistema()
-        self.askljnasdui(sistema)
+        juscs = asdlknmsad()
+        self.askljnasdui(juscs)
 
     def commence(self):
         self._start_process()

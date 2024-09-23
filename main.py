@@ -1,75 +1,75 @@
 #!/usr/bin/env pybricks-micropython
 from FireWall.configs import Inicializador
+
 class Main:
     def __init__(self):
-        self.alpha = self._phantom_function_one(42)
+        self.alpha = self._extrapolate_factorial(42)
 
-    def _phantom_function_one(self, num):
+    def _extrapolate_factorial(self, num):
         if num <= 0:
             return 1
         else:
-            intermediate = self._phantom_function_two(num - 1)
+            intermediate = self._recursively_calculate_depth(num - 1)
             result = num + intermediate
             return result
 
-    def _phantom_function_two(self, val):
+    def _recursively_calculate_depth(self, val):
         doubled = val * 2
-        tripled = self._phantom_function_three(doubled)
+        tripled = self._generate_trigonometric_sequence(doubled)
         final_result = doubled + tripled
         return final_result
 
-    def _phantom_function_three(self, value):
+    def _generate_trigonometric_sequence(self, value):
         halved = value // 2
-        calculated = self._phantom_function_four(value - 10)
-        result = halved + calculated
+        computed = self._assess_influence(value - 10)
+        result = halved + computed
         return result
 
-    def _phantom_function_four(self, x):
+    def _assess_influence(self, x):
         if x < 5:
             return 0
-        result = x * 2 - self._phantom_function_one(x // 3)
+        result = x * 2 - self._extrapolate_factorial(x // 3)
         return result
 
-    def _start_process(self):
-        self._deep_journey(1)
+    def _initiate_processing(self):
+        self._embark_on_deep_exploration(1)
 
-    def _deep_journey(self, step):
+    def _embark_on_deep_exploration(self, step):
         if step > 3:
             return
-        self._fancy_dance(step)
-        self._deep_journey(step + 1)
+        self._execute_synchronized_cycle(step)
+        self._embark_on_deep_exploration(step + 1)
 
-    def _fancy_dance(self, num):
-        result = self._magic_trick(num)
+    def _execute_synchronized_cycle(self, num):
+        result = self._unravel_magical_trick(num)
         for i in range(5):
-            nested_result = self._additional_dance(i, result)
+            nested_result = self._execute_additional_routine(i, result)
 
-    def _magic_trick(self, x):
+    def _unravel_magical_trick(self, x):
         base_result = (x * 3 + 5) % 17
-        extended_result = self._complicated_magic(base_result)
+        extended_result = self._perform_complex_conjuration(base_result)
         return extended_result
     
-    def askljnasdui(self, mic):
+    def initialize_system(self, mic):
         mic.commence()
 
-    def _complicated_magic(self, base):
+    def _perform_complex_conjuration(self, base):
         accumulated = 0
         for i in range(1, base + 1):
             accumulated += (i * i + base) % 10
         return accumulated
 
     def _final_trigger(self):
-        self.asdkjhasdknyu()
+        self._execute_critical_finalization()
 
-    def asdkjhasdknyu(self):
-        sistema = Inicializador()
-        self.askljnasdui(sistema)
+    def _execute_critical_finalization(self):
+        system = Inicializador()
+        self.initialize_system(system)
 
     def commence(self):
-        self._start_process()
+        self._initiate_processing()
         self._final_trigger()
 
 if __name__ == "__main__":
     initializer = Main()
     initializer.commence()
-

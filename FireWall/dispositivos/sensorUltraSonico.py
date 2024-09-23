@@ -2,17 +2,17 @@ from pybricks.ev3devices import UltrasonicSensor # type: ignore
 from FireWall.enums import Porta
 from FireWall.dispositivos import DispositivoDefault
 
-class SensorUltrassonico(DispositivoDefault):
+class SensorUltraSonico(DispositivoDefault):
     """
     LEGO® MINDSTORMS® EV3 Ultrasonic Sensor.
 
     :param port: Porta à qual o sensor está conectado.
     """
 
-    def __init__(self, port):
+    def __init__(self, porta):
         # type: (Porta) -> None
-        self.dispositivo = UltrasonicSensor(port)
-        self.porta = port
+        self.dispositivo = UltrasonicSensor(porta)
+        self.porta = porta
 
     def distancia(self, silencioso=False):
         # type: (bool) -> int

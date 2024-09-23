@@ -1,18 +1,22 @@
 from pybricks.robotics import DriveBase  # type: ignore
-from FireWall.dispositivos import DispositivoDefault
+from FireWall.dispositivos import Motor, SensorGiroscopio
+from FireWall.services import ServicoDefault
 
-class BaseDeDirecao(DispositivoDefault):
-    def __init__(self, motor_esquerdo, motor_direito, diametro_roda, distancia_eixos):
+class ServicoDeMovimento(ServicoDefault):
+    def __init__(self, motor_esquerdo, motor_direito, diametro_roda, distancia_eixos, giroscopio = None,):
+        #type: (Motor, Motor, float, float, SensorGiroscopio) -> ServicoDeMovimento
         """
-        Classe que representa um veículo robótico com duas rodas motorizadas e uma roda ou rodízio de suporte opcional.
+        Classe que representa um veículo robótico com duas rodas motorizadas.
 
         :param motor_esquerdo: O motor que movimenta a roda esquerda.
         :param motor_direito: O motor que movimenta a roda direita.
         :param diametro_roda: O diâmetro das rodas em milímetros.
         :param distancia_eixos: A distância entre os pontos onde ambas as rodas tocam o chão.
         """
-        
-        self.driveBase = DriveBase(motor_esquerdo, motor_direito, diametro_roda, distancia_eixos)
+        self.RMotor = motor_direito
+        self.LMotor = motor_esquerdo
+        self.giroscopio = giroscopio
+        self.driveBase = DriveBase(motor_esquerdo.toLego(), motor_direito.toLego(), diametro_roda, distancia_eixos)
 
     def acelerarPorDiantancia(self, distancia):
         #type: (int) -> None
@@ -31,7 +35,6 @@ class BaseDeDirecao(DispositivoDefault):
         :param angulo: O ângulo de rotação em graus.
         """
         self.driveBase.turn(angulo)
-        # Lógica para girar o robô
 
     def configurar(self, velocidade_reta=None, aceleracao_reta=None, taxa_giro=None, aceleracao_giro=None):
         #type: (float, float, float, float) -> None

@@ -47,12 +47,12 @@ class SensorDeCor(DispositivoDefault):
         return self.dispositivo.reflection()
 
     def getRGB(self):
-        # type: () -> tuple[int, int, int]
+        # type: () -> tuple[float, float, float]
         """
         Mede a reflexão de uma superfície usando luz vermelha, verde e azul.
 
         :return: Tupla de reflexões para luz vermelha, verde e azul, cada uma variando de
                  0.0 (sem reflexão) a 100.0 (alta reflexão).
-        :rtype: list[int]
+        :rtype: tuple[float, float, float]
         """
         return self.dispositivo.rgb()

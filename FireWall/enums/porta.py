@@ -1,7 +1,7 @@
 from pybricks.parameters import Port # type: ignore
 
 class Porta:
-    """Classe que representa as portas do brick programável ou hub LEGO®."""
+    """Classe que representa as portas do LEGO® EV3."""
 
     P1 = Port.S1  # type: Porta
     P2 = Port.S2  # type: Porta

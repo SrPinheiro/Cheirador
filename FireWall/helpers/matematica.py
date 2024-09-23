@@ -5,7 +5,7 @@ class Matematica:
     
     @staticmethod
     def MedianaPorVetor(vetor, amostrasValidas = Parametros.PORCENTAGEM_DE_AMOSTRAS_COR_VALIDAS):
-        # type: (list[int | float], float) -> int
+        # type: (list[int | float], float) -> float
         vetor.sort()
         comprimento = len(vetor)
         centro = math.floor(comprimento / 2)

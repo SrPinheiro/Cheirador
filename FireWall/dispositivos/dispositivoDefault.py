@@ -3,7 +3,7 @@ from FireWall.enums import Porta
 class DispositivoDefault:
     """Classe base para dispositivos LEGO®."""
 
-    def extrair(self):
+    def toLego(self):
         # type: () -> object
         """Extrai o dispositivo LEGO® associado.
 

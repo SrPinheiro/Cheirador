@@ -1,6 +1,6 @@
 from FireWall.services import ServicoDefault
 
-class BlueToothService(ServicoDefault):
+class ServicoBluetooth(ServicoDefault):
     def __init__(self):
         pass
 

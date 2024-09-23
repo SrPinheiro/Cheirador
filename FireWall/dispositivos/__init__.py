@@ -5,4 +5,4 @@ from .sensorDeCor import SensorDeCor
 from .sensorDeToque import SensorDeToque
 from .sensorGiroscopio import SensorGiroscopio
 from .sensorInfraVermelho import SensorInfravermelho
-from .sensorUltraSonico import SensorUltrassonico
+from .sensorUltraSonico import SensorUltraSonico

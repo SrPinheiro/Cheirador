@@ -1,4 +1,4 @@
-from FireWall.enums import Porta
+from FireWall.enums.porta import Porta
 
 class DispositivoDefault:
     """Classe base para dispositivos LEGO®."""

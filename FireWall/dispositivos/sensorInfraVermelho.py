@@ -1,6 +1,7 @@
 from pybricks.ev3devices import InfraredSensor # type: ignore
-from FireWall.enums import Botao, Porta
-from FireWall.dispositivos import DispositivoDefault
+from FireWall.enums.botoes import Botao
+from FireWall.enums.porta import Porta
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
 class SensorInfravermelho(DispositivoDefault):
     """

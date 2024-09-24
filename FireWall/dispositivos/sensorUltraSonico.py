@@ -1,6 +1,6 @@
 from pybricks.ev3devices import UltrasonicSensor # type: ignore
-from FireWall.enums import Porta
-from FireWall.dispositivos import DispositivoDefault
+from FireWall.enums.porta import Porta
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
 class SensorUltraSonico(DispositivoDefault):
     """

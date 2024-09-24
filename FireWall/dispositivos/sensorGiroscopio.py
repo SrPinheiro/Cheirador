@@ -1,8 +1,9 @@
 from pybricks.ev3devices import GyroSensor # type: ignore
-from FireWall.enums import Direcao, Porta
-from FireWall.dispositivos import dispositivoDefault
+from FireWall.enums.direcao import Direcao
+from FireWall.enums.porta import Porta
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
-class SensorGiroscopio(dispositivoDefault):
+class SensorGiroscopio(DispositivoDefault):
     """
     LEGO® MINDSTORMS® EV3 Gyro Sensor.
 
@@ -16,7 +17,7 @@ class SensorGiroscopio(dispositivoDefault):
         self.dispositivo = GyroSensor(porta, direcao_positiva)
         self.porta = porta
 
-    def velocidade(self):
+    def getVelocidade(self):
         # type: () -> int
         """
         Obtém a velocidade (velocidade angular) do sensor.
@@ -26,7 +27,7 @@ class SensorGiroscopio(dispositivoDefault):
         """
         return self.dispositivo.speed()
 
-    def angulo(self):
+    def getAngulo(self):
         # type: () -> int
         """
         Obtém o ângulo acumulado do sensor.

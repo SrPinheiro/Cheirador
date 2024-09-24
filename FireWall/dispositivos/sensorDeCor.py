@@ -1,6 +1,7 @@
 from pybricks.ev3devices import ColorSensor # type: ignore
-from FireWall.enums import Cor, Porta
-from FireWall.dispositivos import DispositivoDefault
+from FireWall.enums.cor import Cor
+from FireWall.enums.porta import Porta
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
 class SensorDeCor(DispositivoDefault):
     """

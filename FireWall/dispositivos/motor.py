@@ -1,6 +1,8 @@
 from pybricks.ev3devices import Motor as MotorLego  # type: ignore
-from FireWall.enums import Parada, Direcao, Porta
-from FireWall.dispositivos import DispositivoDefault
+from FireWall.enums.porta import Porta
+from FireWall.enums.direcao import Direcao
+from FireWall.enums.parada import Parada
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
 class Motor(DispositivoDefault):
     """
@@ -93,8 +95,8 @@ class Motor(DispositivoDefault):
         Parameters:
             velocidade (int): Velocidade do motor em graus por segundo.
         """
-        if velocidade < 0:
-            self.dispositivo.run(velocidade)
+        if velocidade > 0:
+            self.dispositivo.run(-velocidade)
         else:
             self.dispositivo.run(0)
         

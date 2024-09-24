@@ -1,4 +1,4 @@
-from app.controllers import ControladorDefault
+from app.controllers.controladorDefault import ControladorDefault
 
 class DirecaoController(ControladorDefault):
     

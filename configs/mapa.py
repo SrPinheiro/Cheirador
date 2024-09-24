@@ -6,3 +6,5 @@ class Mapa:
 
     SENSORESQUERDO = Porta.P1
     SENSORDIREITO = Porta.P4
+    
+    GIROSCOPIO = Porta.P3

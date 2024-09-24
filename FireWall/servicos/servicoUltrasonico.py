@@ -1,7 +1,8 @@
-from FireWall.servicos import ServicoDefault
-from FireWall.enums import Porta
-from FireWall.dispositivos import SensorUltraSonico
-from FireWall.helpers import Matematica, autoSalvarHistoricoDeDistancia
+from FireWall.servicos.servicoDefault import ServicoDefault
+from FireWall.enums.porta import Porta
+from FireWall.dispositivos.sensorUltraSonico import SensorUltraSonico
+from FireWall.helpers.matematica import Matematica
+from FireWall.helpers.wrappers import autoSalvarHistoricoDeDistancia
 
 class ServicoUltrasonico(ServicoDefault):
     """

@@ -1,8 +1,9 @@
 
 from pybricks.ev3devices import TouchSensor # type: ignore
-from FireWall.enums import Porta
+from FireWall.enums.porta import Porta
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
-class SensorDeToque:
+class SensorDeToque(DispositivoDefault):
     """
     LEGO® MINDSTORMS® EV3 Touch Sensor.
 

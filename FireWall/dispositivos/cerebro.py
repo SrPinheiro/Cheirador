@@ -1,6 +1,7 @@
 from pybricks.hubs import EV3Brick # type: ignore
-from FireWall.enums import Cor, Botao
-from FireWall.dispositivos import DispositivoDefault
+from FireWall.enums.cor import Cor
+from FireWall.enums.botoes import Botao
+from FireWall.dispositivos.dispositivoDefault import DispositivoDefault
 
 class Cerebro(DispositivoDefault):
     """Classe para controlar o LEGO® MINDSTORMS® EV3 Brick."""
@@ -43,18 +44,8 @@ class Cerebro(DispositivoDefault):
         """Desliga as luzes do bloco."""
         self.dispositivo.light.off()
 
-    def tocarBeep(self, frequencia=500, duracao=100):
-        # type: (int, int) -> None
-        """Toca um beep com a frequência e duração especificadas.
-
-        Parameters:
-            frequencia (int): Frequência do beep.
-            duracao (int): Duração do beep.
-        """
-        self.dispositivo.speaker.beep(frequency=frequencia, duration=duracao)
-
-    def tocarVariosBips(self, quantidade, frequencia=500, duracao=100):
-        #type: (int, int, int) -> None
+    def tocarBeep(self, quantidadeDeBeeps= 1, frequencia=500, duracao=100):
+        # type: (int, int, int) -> None
         """Toca varios beep com a frequência e duração especificadas.
 
         Parameters:
@@ -62,8 +53,8 @@ class Cerebro(DispositivoDefault):
             frequencia (int): Frequência do beep.
             duracao (int): Duração do beep.
         """
-        for _ in range(quantidade):
-            self.tocarBeep(frequencia, duracao)
+        for _ in range(quantidadeDeBeeps):
+            self.dispositivo.speaker.beep(frequency=frequencia, duration=duracao)
 
     def tocarNotas(self, notas, tempo=120):
         # type: (iter, int) -> None

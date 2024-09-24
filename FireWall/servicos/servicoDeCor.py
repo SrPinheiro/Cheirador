@@ -1,9 +1,10 @@
-from FireWall.enums import Cor, Porta
-from FireWall.helpers import Matematica
-from FireWall.servicos import ServicoDefault
-from FireWall.dispositivos import SensorDeCor
-from FireWall.configs import Parametros
-from FireWall.helpers import autoSalvarHistoricoDeCor
+from FireWall.enums.cor import Cor
+from FireWall.enums.porta import Porta
+from FireWall.helpers.matematica import Matematica
+from FireWall.servicos.servicoDefault import ServicoDefault
+from FireWall.dispositivos.sensorDeCor import SensorDeCor
+from FireWall.configs.parametros import Parametros
+from FireWall.helpers.wrappers import autoSalvarHistoricoDeCor
 
 class ServicoDeCor(ServicoDefault):
     """

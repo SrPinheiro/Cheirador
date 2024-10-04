@@ -2,9 +2,10 @@ from pybricks.robotics import DriveBase  # type: ignore
 from FireWall.dispositivos.motor import Motor
 from FireWall.dispositivos.sensorGiroscopio import SensorGiroscopio
 from FireWall.servicos.servicoDefault import ServicoDefault
+from FireWall.enums.direcao import Direcao
 
 class ServicoDeMovimento(ServicoDefault):
-    def __init__(self, motor_esquerdo, motor_direito, diametro_roda, distancia_eixos, giroscopio = None,):
+    def __init__(self, motor_esquerdo, motor_direito, diametro_roda, distancia_eixos):
         #type: (Motor, Motor, float, float, SensorGiroscopio) -> ServicoDeMovimento
         """
         Classe que representa um veículo robótico com duas rodas motorizadas.
@@ -16,7 +17,6 @@ class ServicoDeMovimento(ServicoDefault):
         """
         self.RMotor = motor_direito
         self.LMotor = motor_esquerdo
-        self.giroscopio = giroscopio
         self.driveBase = DriveBase(motor_esquerdo.toLego(), motor_direito.toLego(), diametro_roda, distancia_eixos)
 
     def acelerarPorDiantancia(self, distancia):
@@ -24,18 +24,56 @@ class ServicoDeMovimento(ServicoDefault):
         """
         Move o robô em linha reta por uma distância especificada e então para.
 
-        :param distancia: Distância a ser percorrida em milímetros.
+        :param distancia: Distância a ser percorrida em centimetros.
         """
-        self.driveBase.straight(distancia)
+        correcao = 2.3
+        self.driveBase.straight(distancia * correcao)
 
-    def girar(self, angulo):
-        #type: (int) -> None
+    def girar(self, angulo, direcao= Direcao.SENTIDOHORARIO):
+        #type: (int, Direcao) -> None
         """
         Gira o robô em torno de seu eixo por um ângulo especificado e então para.
 
         :param angulo: O ângulo de rotação em graus.
         """
+        if(direcao == Direcao.SENTIDOANTIHORARIO):
+            angulo *= -1
+            
         self.driveBase.turn(angulo)
+        
+    def girar360(self, direcao= Direcao.SENTIDOHORARIO):
+        #type: (Direcao) -> None
+        """
+        Gira o robô em torno de seu eixo por 360 graus.
+        """
+        anguloCorigido = 390
+        
+        if(direcao == Direcao.SENTIDOANTIHORARIO):
+            anguloCorigido *= -1
+        self.driveBase.turn(anguloCorigido)
+        
+    def girar90(self, direcao= Direcao.SENTIDOHORARIO):
+        #type: (Direcao) -> None
+        """
+        Gira o robô em torno de seu eixo por 90 graus.
+        """
+        anguloCorigido = 100
+        
+        if(direcao == Direcao.SENTIDOANTIHORARIO):
+            anguloCorigido *= -1
+            
+        self.driveBase.turn(anguloCorigido)
+        
+    def girar180(self, direcao= Direcao.SENTIDOHORARIO):
+        #type: (Direcao) -> None
+        """
+        Gira o robô em torno de seu eixo por 180 graus.
+        """
+        anguloCorigido = 195
+        
+        if(direcao == Direcao.SENTIDOANTIHORARIO):
+            anguloCorigido *= -1
+        self.driveBase.turn(anguloCorigido)
 
     def configurar(self, velocidade_reta=None, aceleracao_reta=None, taxa_giro=None, aceleracao_giro=None):
         #type: (float, float, float, float) -> None
@@ -67,7 +105,7 @@ class ServicoDeMovimento(ServicoDefault):
         """
         self.driveBase.stop()
 
-    def distancia(self):
+    def getDistancia(self):
         #type: () -> float
         """
         Obtém a distância percorrida estimada.
@@ -76,7 +114,7 @@ class ServicoDeMovimento(ServicoDefault):
         """
         return self.driveBase.distance()
 
-    def angulo(self):
+    def getAngulo(self):
         #type: () -> int
         """
         Obtém o ângulo de rotação acumulado estimado.
@@ -85,7 +123,7 @@ class ServicoDeMovimento(ServicoDefault):
         """
         return self.driveBase.angle()
 
-    def estado(self):
+    def getEstado(self):
         #type: () -> tuple[float, float, float, float]
         """
         Obtém o estado atual do robô.

@@ -2,9 +2,12 @@ from FireWall.enums import Porta
 
 class Mapa:
     MOTORDIREITO = Porta.PD
-    MOTORESQUERDO = Porta.PB
+    MOTORESQUERDO = Porta.PA
 
-    SENSORESQUERDO = Porta.P1
-    SENSORDIREITO = Porta.P4
+    SENSORINFERIORESQUERDO = Porta.P1
+    SENSORINFERIORDIREIRO = Porta.P4
+    
+    SENSORSUPERIORESQUERDO = Porta.P2
+    SENSORSUPERIORDIREITO = Porta.P3
     
     GIROSCOPIO = Porta.P3

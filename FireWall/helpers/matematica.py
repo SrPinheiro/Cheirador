@@ -1,4 +1,4 @@
-from FireWall.configs import Parametros
+from FireWall.configs.parametros import Parametros
 import math
 
 class Matematica:

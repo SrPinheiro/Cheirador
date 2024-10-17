@@ -19,6 +19,7 @@ class Sistema:
         self.direcao = ServicoDeMovimento(self.LMotor, self.RMotor,  1.5, 9.5)
         
     def run(self):
+        #self.testarGiro()
         self.iniciarSistema()
 
          
@@ -87,10 +88,7 @@ class Sistema:
             self.RMotor.trancarGiroDoMotor()
             self.LMotor.trancarGiroDoMotor()
             self.direcao.acelerarPorDiantancia(-0.5)
-            self.direcao.parar()
-            
-            
-        
+            self.direcao.parar()     
 
     def encontrarTrilha(self):
         self.direcao.acelerarPorDiantancia(-6.5)

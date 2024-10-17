@@ -46,7 +46,7 @@ class ServicoDeMovimento(ServicoDefault):
         """
         Gira o robô em torno de seu eixo por 360 graus.
         """
-        anguloCorigido = 390
+        anguloCorigido = 300
         
         if(direcao == Direcao.SENTIDOANTIHORARIO):
             anguloCorigido *= -1
@@ -57,7 +57,7 @@ class ServicoDeMovimento(ServicoDefault):
         """
         Gira o robô em torno de seu eixo por 90 graus.
         """
-        anguloCorigido = 100
+        anguloCorigido = 75
         
         if(direcao == Direcao.SENTIDOANTIHORARIO):
             anguloCorigido *= -1
@@ -69,7 +69,7 @@ class ServicoDeMovimento(ServicoDefault):
         """
         Gira o robô em torno de seu eixo por 180 graus.
         """
-        anguloCorigido = 195
+        anguloCorigido = 150
         
         if(direcao == Direcao.SENTIDOANTIHORARIO):
             anguloCorigido *= -1
